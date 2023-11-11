@@ -23,10 +23,13 @@ def run(query:str):
     score = 0
     most_similar_content = ""
     for d in docs_and_scores:
+        print(score)
         print(d[0].metadata)
         print(f"score: {d[1]}")
         print(d[0].page_content)
         if d[1] >= score:
+            score = d[1]
+            best_doc = d[0]
             most_similar_content = d[0].page_content
         print("\n\n")
     
@@ -43,7 +46,7 @@ def run(query:str):
 
     print(short_answer)
 
-    return docs_and_scores, short_answer
+    return best_doc, short_answer
 
 
 if __name__ == "__main__":
